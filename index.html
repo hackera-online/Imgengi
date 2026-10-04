@@ -1,0 +1,748 @@
+<!doctype html>
+<html lang="bg">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ай Ем Джи Инженеринг ООД</title>
+<meta name="description" content="Проектиране, доставка, изграждане, монтаж и сервиз на климатични, отоплителни, вентилационни и газови системи.">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&subset=cyrillic" rel="stylesheet">
+<style>
+:root{
+  --navy:#0b2a4a;--navy-2:#123e6b;--navy-3:#071b30;--blue:#1769b5;--accent:#c8472b;--accent-d:#a93a22;
+  --ink:#1d2733;--mut:#5f6f82;--line:#dde3ea;--bg:#f4f6f9;--white:#fff;
+  --sh:0 1px 2px rgba(11,42,74,.06),0 8px 28px rgba(11,42,74,.08)
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;font-family:Roboto,Arial,sans-serif;color:var(--ink);background:#fff;-webkit-font-smoothing:antialiased;line-height:1.5}
+a{color:inherit;text-decoration:none}
+button,input,textarea{font-family:inherit;line-height:normal}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+svg.i{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:none}
+
+/* top bar */
+.topbar{background:var(--navy-3);color:#9fb3c9;font-size:13px}
+.topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:40px}
+.topbar .l span{display:inline-flex;align-items:center;gap:8px;margin-right:28px}
+.topbar .l .i{color:#6fa3d8}
+.topbar .lng a{padding:3px 9px;letter-spacing:.5px;font-size:12px}
+.topbar .lng a.on{background:#fff;color:var(--navy);font-weight:700}
+
+/* header */
+header{background:rgba(255,255,255,.97);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:40}
+.hd{display:flex;align-items:center;justify-content:space-between;height:80px;gap:20px}
+.logo{display:flex;align-items:center;gap:14px}
+.mark{width:48px;height:48px;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:700;font-size:15px;letter-spacing:.6px;border-bottom:3px solid var(--accent)}
+.logo b{display:block;font-size:18px;font-weight:700;color:var(--navy);letter-spacing:.2px;line-height:1.2}
+.logo small{display:block;font-size:11.5px;color:var(--mut);margin-top:2px;letter-spacing:.3px}
+nav ul{list-style:none;margin:0;padding:0;display:flex;gap:2px}
+nav a{display:block;white-space:nowrap;padding:10px 12px;font-size:14.5px;font-weight:500;color:var(--ink);border-bottom:2px solid transparent;transition:.2s}
+nav a:hover{color:var(--blue);border-color:var(--blue)}
+.burger{display:none;flex:none;padding:0;background:none;border:1px solid var(--line);width:42px;height:42px;font-size:22px;color:var(--navy);cursor:pointer;place-items:center}
+.cta{white-space:nowrap;background:var(--accent);color:#fff;padding:13px 24px;font-size:14.5px;font-weight:500;border:0;cursor:pointer;letter-spacing:.2px;transition:background .2s;display:inline-flex;align-items:center;gap:10px}
+.cta:hover{background:var(--accent-d)}
+.cta.sm{padding:11px 20px;font-size:14px}
+.ghost{border:1px solid rgba(255,255,255,.4);color:#fff;padding:12px 24px;font-size:14.5px;font-weight:500;transition:.2s;display:inline-block}
+.ghost:hover{background:rgba(255,255,255,.1)}
+.mnav{display:none;background:#fff;border-bottom:1px solid var(--line)}
+.mnav.open{display:block}
+.mnav a{display:block;padding:14px 28px;border-top:1px solid var(--line);font-weight:500}
+
+/* hero */
+.hero{background:var(--navy);color:#fff;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:0;background:
+  radial-gradient(900px 500px at 85% 20%,rgba(23,105,181,.35),transparent 60%),
+  repeating-linear-gradient(0deg,rgba(255,255,255,.03) 0 1px,transparent 1px 56px),
+  repeating-linear-gradient(90deg,rgba(255,255,255,.03) 0 1px,transparent 1px 56px)}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.2fr .8fr;gap:64px;align-items:center;padding-top:88px;padding-bottom:96px}
+.eyebrow{font-size:12.5px;letter-spacing:2.2px;text-transform:uppercase;color:#8fb4dc;margin-bottom:20px;font-weight:500;display:flex;align-items:center;gap:12px}
+.eyebrow:before{content:"";width:34px;height:2px;background:var(--accent)}
+.hero h1{font-size:46px;line-height:1.14;font-weight:500;margin:0 0 22px;letter-spacing:-.3px}
+.hero p.lead{font-size:18px;line-height:1.7;color:#c4d3e4;margin:0 0 34px;max-width:580px;font-weight:300}
+.hero .btns{display:flex;gap:14px;flex-wrap:wrap}
+.hero .pts{display:flex;gap:28px;flex-wrap:wrap;margin-top:44px;padding-top:26px;border-top:1px solid rgba(255,255,255,.14)}
+.hero .pts span{display:flex;align-items:center;gap:10px;font-size:14px;color:#b6c8dc}
+.hero .pts .i{color:#7fb2e5;font-size:20px}
+.panel{background:#fff;color:var(--ink);padding:34px;border-top:4px solid var(--accent);box-shadow:0 30px 70px rgba(0,0,0,.35)}
+.panel h3{margin:0 0 8px;font-size:21px;font-weight:500;color:var(--navy)}
+.panel p{color:var(--mut);font-size:14.5px;margin:0 0 20px;line-height:1.6}
+.panel ol{margin:0 0 24px;padding:0;list-style:none;counter-reset:s}
+.panel li{counter-increment:s;display:flex;gap:14px;align-items:center;padding:12px 0;border-top:1px solid var(--line);font-size:14.5px}
+.panel li:before{content:counter(s);width:26px;height:26px;border-radius:50%;background:var(--navy);color:#fff;font-size:12px;font-weight:700;display:grid;place-items:center;flex:none}
+.panel .cta{width:100%;justify-content:center;padding:15px}
+.panel small{display:block;text-align:center;margin-top:12px;color:var(--mut);font-size:12.5px}
+
+/* sections */
+section{padding:92px 0}
+.sh{margin-bottom:46px;max-width:680px}
+.sh.c{margin-left:auto;margin-right:auto;text-align:center}
+.sh small{display:block;font-size:12.5px;letter-spacing:2.2px;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:12px}
+.sh h2{margin:0 0 14px;font-size:34px;font-weight:500;color:var(--navy);letter-spacing:-.2px;line-height:1.2}
+.sh p{margin:0;color:var(--mut);font-size:16.5px;line-height:1.7}
+.alt{background:var(--bg)}
+.clg{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.clg span{background:#fff;padding:28px 10px;text-align:center;color:var(--mut);font-weight:500;font-size:14.5px}
+
+/* about */
+.ab{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.ab h2{margin:0 0 18px;font-size:34px;font-weight:500;color:var(--navy);line-height:1.2}
+.ab p{color:var(--mut);font-size:16px;line-height:1.75;margin:0 0 16px}
+.checks{list-style:none;padding:0;margin:24px 0 0;display:grid;gap:12px}
+.checks li{display:flex;gap:12px;align-items:flex-start;font-size:15.5px}
+.checks .i{color:var(--accent);font-size:20px;margin-top:2px;stroke-width:2}
+.abv{background:var(--navy);padding:44px;position:relative;color:#fff}
+.abv:before{content:"";position:absolute;right:-18px;bottom:-18px;width:100%;height:100%;border:2px solid var(--accent);z-index:-1}
+.abv .grid{display:grid;grid-template-columns:1fr 1fr;gap:34px 28px}
+.abv .k .i{font-size:30px;color:#7fb2e5;margin-bottom:12px}
+.abv .k b{display:block;font-size:17px;font-weight:500;margin-bottom:4px}
+.abv .k span{font-size:13.5px;color:#a9bdd3;line-height:1.55;display:block}
+
+/* services */
+.sv{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.svc{background:#fff;padding:36px 30px;border:1px solid var(--line);border-top:3px solid transparent;transition:.25s;position:relative}
+.svc:hover{border-top-color:var(--accent);box-shadow:var(--sh);transform:translateY(-4px)}
+.svc .ic{width:58px;height:58px;background:var(--bg);display:grid;place-items:center;font-size:28px;color:var(--blue);margin-bottom:22px;transition:.25s}
+.svc:hover .ic{background:var(--navy);color:#fff}
+.svc h3{margin:0 0 10px;font-size:19px;font-weight:500;color:var(--navy)}
+.svc p{margin:0 0 18px;font-size:14.8px;line-height:1.65;color:var(--mut)}
+.svc a{font-size:14px;font-weight:500;color:var(--blue);display:inline-flex;align-items:center;gap:8px}
+
+/* brands */
+.brands{background:var(--navy);padding:38px 0}
+.brands .wrap{display:flex;flex-wrap:wrap;gap:14px 38px;justify-content:space-between;align-items:center}
+.brands em{font-style:normal;color:#6f8cab;font-size:12.5px;letter-spacing:2px;text-transform:uppercase}
+.brands span{color:#a9bdd3;font-size:17px;font-weight:500;letter-spacing:1.4px;text-transform:uppercase}
+
+/* heat pump */
+.hp{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.diag{background:#fff;border:1px solid var(--line);padding:28px;box-shadow:var(--sh)}
+.diag svg{width:100%;height:auto;display:block}
+.bens{display:grid;grid-template-columns:1fr 1fr;gap:26px 24px;margin-top:30px}
+.ben .i{font-size:26px;color:var(--blue);margin-bottom:10px}
+.ben b{display:block;font-size:16px;font-weight:500;color:var(--navy);margin-bottom:4px}
+.ben span{font-size:14px;color:var(--mut);line-height:1.6}
+
+/* process */
+.pr{display:grid;grid-template-columns:repeat(5,1fr);position:relative}
+.pr:before{content:"";position:absolute;left:10%;right:10%;top:29px;height:2px;background:var(--line)}
+.st{text-align:center;padding:0 14px;position:relative}
+.st .n{width:60px;height:60px;border-radius:50%;background:#fff;border:2px solid var(--navy);color:var(--navy);font-size:20px;font-weight:500;display:grid;place-items:center;margin:0 auto 20px;position:relative;z-index:1;transition:.25s}
+.st:hover .n{background:var(--navy);color:#fff}
+.st b{display:block;font-size:16.5px;font-weight:500;color:var(--navy);margin-bottom:8px}
+.st span{font-size:14px;color:var(--mut);line-height:1.6}
+
+/* offer band */
+.band{background:var(--navy);color:#fff;padding:64px 0;position:relative;overflow:hidden}
+.band:before{content:"";position:absolute;inset:0;background:radial-gradient(700px 300px at 10% 0%,rgba(23,105,181,.4),transparent 60%)}
+.band .wrap{position:relative;display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap}
+.band h2{margin:0 0 10px;font-size:30px;font-weight:500}
+.band p{margin:0;color:#b6c8dc;font-size:16.5px;max-width:640px;line-height:1.65}
+
+/* news */
+.nw{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.card{background:#fff;border:1px solid var(--line);transition:.25s}
+.card:hover{box-shadow:var(--sh);transform:translateY(-4px)}
+.card .ph{height:170px;background:linear-gradient(135deg,var(--navy-2),var(--blue));position:relative;display:grid;place-items:center;color:rgba(255,255,255,.9);font-size:46px}
+.card .ph .tag{position:absolute;left:0;top:18px;background:var(--accent);color:#fff;font-size:11.5px;letter-spacing:1px;text-transform:uppercase;padding:5px 14px;font-weight:500}
+.card .tx{padding:26px}
+.card h3{margin:0 0 10px;font-size:18px;line-height:1.4;font-weight:500;color:var(--navy)}
+.card p{margin:0 0 16px;font-size:14.8px;color:var(--mut);line-height:1.65}
+.card a{font-size:14px;color:var(--blue);font-weight:500}
+
+/* faq */
+.fq{max-width:860px;margin:0 auto}
+.fi{border-bottom:1px solid var(--line)}
+.fi button{width:100%;text-align:left;background:none;border:0;padding:22px 4px;font-size:17px;font-weight:500;color:var(--navy);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.fi button .i{transition:.3s;font-size:20px;color:var(--accent)}
+.fi.open button .i{transform:rotate(45deg)}
+.fi .a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.fi .a p{margin:0;padding:0 4px 24px;color:var(--mut);font-size:15.5px;line-height:1.75}
+
+/* contact */
+.ct{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px}
+.ci{display:grid;gap:26px;align-content:start}
+.ci div{display:flex;gap:18px;align-items:flex-start}
+.ci .ic{width:48px;height:48px;background:var(--navy);color:#fff;display:grid;place-items:center;font-size:22px;flex:none}
+.ci b{display:block;color:var(--navy);font-weight:500;font-size:16px;margin-bottom:2px}
+.ci span{color:var(--mut);font-size:15px;line-height:1.6}
+.form{background:#fff;border:1px solid var(--line);padding:36px;box-shadow:var(--sh)}
+.form h3{margin:0 0 22px;font-size:21px;font-weight:500;color:var(--navy)}
+.form .g{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form label{display:block;font-size:13px;color:var(--mut);margin-bottom:6px;font-weight:500}
+.form input,.form textarea{width:100%;border:1px solid #c9d3df;padding:13px 14px;font-size:15px;font-family:inherit;outline:none;transition:.2s;background:#fff}
+.form input:focus,.form textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(23,105,181,.12)}
+.form textarea{min-height:110px;resize:vertical}
+.form .full{grid-column:1/-1}
+.form .ok{display:none;margin-top:16px;padding:14px 16px;background:#eaf5ee;color:#1e6b3a;font-size:14.5px;border-left:3px solid #2f9e5b}
+
+footer{background:var(--navy-3);color:#9fb3c9;padding:64px 0 44px;font-size:14.5px;line-height:1.85}
+footer .wrap{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:56px}
+footer h4{margin:0 0 16px;color:#fff;font-size:16px;font-weight:500;letter-spacing:.3px}
+footer a{display:block;color:#9fb3c9;transition:.2s}
+footer a:hover{color:#fff}
+footer .logo b{color:#fff}footer .logo small{color:#7d93ab}
+footer p{margin:16px 0 0}
+.cp{background:#04101d;color:#6a7f96;font-size:13px;padding:16px 0}
+.cp .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+
+#top{position:fixed;left:24px;bottom:24px;z-index:35;width:44px;height:44px;background:#fff;border:1px solid var(--line);color:var(--navy);cursor:pointer;display:none;place-items:center;font-size:20px;box-shadow:var(--sh)}
+#top.show{display:grid}
+
+/* chat launcher */
+#fab{position:fixed;right:24px;bottom:24px;z-index:50;background:var(--navy);color:#fff;border:0;padding:16px 26px 16px 22px;font-size:15px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:12px;box-shadow:0 10px 30px rgba(8,28,50,.4);border-bottom:3px solid var(--accent);transition:.2s}
+#fab .i{font-size:21px}
+#fab:hover{background:var(--navy-2)}
+#tease{position:fixed;right:24px;bottom:92px;z-index:50;background:#fff;border:1px solid var(--line);box-shadow:var(--sh);padding:16px 40px 16px 18px;font-size:14px;max-width:270px;line-height:1.5;color:var(--ink);display:none;border-left:3px solid var(--accent)}
+#tease.show{display:block;animation:up .5s ease}
+#tease button{position:absolute;right:8px;top:6px;background:none;border:0;font-size:18px;color:var(--mut);cursor:pointer}
+@keyframes up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* chat window */
+#chat{position:fixed;right:24px;bottom:24px;z-index:60;width:420px;max-width:calc(100vw - 24px);height:660px;max-height:calc(100vh - 36px);background:#fff;box-shadow:0 22px 64px rgba(8,28,50,.4);display:none;flex-direction:column;border-top:4px solid var(--accent)}
+#chat.open{display:flex;animation:up .35s ease}
+.ch{background:var(--navy);color:#fff;padding:16px 18px;display:flex;align-items:center;gap:14px}
+.av{width:42px;height:42px;background:rgba(255,255,255,.12);display:grid;place-items:center;font-size:21px}
+.ch .t{flex:1}
+.ch b{display:block;font-weight:500;font-size:15.5px}
+.ch small{color:#9db6d1;font-size:12.5px;display:flex;align-items:center;gap:6px}
+.ch small:before{content:"";width:7px;height:7px;border-radius:50%;background:#43c07a}
+.ch button{background:none;border:0;color:#fff;cursor:pointer;font-size:19px;padding:6px;display:grid;opacity:.75}
+.ch button:hover{opacity:1}
+.prog{height:3px;background:#e4e9ef}
+.prog i{display:block;height:100%;width:0;background:var(--accent);transition:width .5s ease}
+#msgs{flex:1;overflow-y:auto;padding:20px 18px;background:var(--bg);display:flex;flex-direction:column;gap:12px}
+.m{max-width:86%;padding:12px 15px;font-size:14.5px;line-height:1.6;white-space:pre-wrap;animation:up .3s ease}
+.bot{background:#fff;border:1px solid var(--line);align-self:flex-start;color:var(--ink)}
+.usr{background:var(--blue);color:#fff;align-self:flex-end}
+.typing{color:var(--mut)}
+.typing:after{content:"";display:inline-block;width:20px;text-align:left;animation:d 1.2s steps(4) infinite}
+@keyframes d{0%{content:""}25%{content:"."}50%{content:".."}75%{content:"..."}}
+.offer{background:#fff;border:1px solid var(--line);align-self:stretch;font-size:14px;animation:up .4s ease}
+.offer .oh{background:var(--navy);color:#fff;padding:13px 16px;font-weight:500;font-size:14.5px}
+.offer .ob{padding:4px 16px 14px}
+.orow{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--line)}
+.orow span{color:var(--mut);flex:none}
+.orow b{font-weight:500;text-align:right}
+.otot{padding:16px 0 6px}
+.otot span{display:block;color:var(--mut);font-size:12.5px;margin-bottom:2px}
+.otot b{font-size:26px;font-weight:500;color:var(--navy)}
+.otot em{font-style:normal;color:var(--mut);font-size:13px}
+.onote{font-size:12.5px;color:var(--mut);line-height:1.6;margin-top:8px}
+.onext{background:var(--bg);padding:14px 16px;font-size:13.5px;line-height:1.6;border-top:1px solid var(--line)}
+.qr{display:flex;flex-wrap:wrap;gap:8px;padding:0 18px 14px;background:var(--bg)}
+.qr:empty{display:none}
+.qr button{background:#fff;border:1px solid #b9c7d8;color:var(--navy);padding:9px 15px;font-size:13.5px;cursor:pointer;transition:.15s}
+.qr button:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+.cf{display:flex;border-top:1px solid var(--line);background:#fff}
+.cf input{flex:1;border:0;padding:18px;font-size:15px;outline:none;font-family:inherit;background:transparent}
+.cf button{border:0;background:var(--accent);color:#fff;width:60px;cursor:pointer;font-size:20px;display:grid;place-items:center}
+.cf button:hover{background:var(--accent-d)}
+.legal{background:#fff;text-align:center;font-size:11.5px;color:#8a98a8;padding:0 14px 10px}
+
+@media(max-width:1100px){nav{display:none}.burger{display:grid}.hd .cta{display:none}}
+@media(max-width:980px){
+  .hero .wrap,.ab,.hp,.ct,footer .wrap{grid-template-columns:1fr;gap:44px}
+  .hero h1{font-size:34px}
+  .sv,.nw{grid-template-columns:1fr 1fr}
+  .clg{grid-template-columns:repeat(2,1fr)}
+  .pr{grid-template-columns:1fr;gap:34px}.pr:before{display:none}
+  .st{display:grid;grid-template-columns:60px 1fr;text-align:left;gap:20px;padding:0}.st .n{margin:0}
+  section{padding:68px 0}
+}
+@media(max-width:640px){
+  .sv,.nw,.bens,.abv .grid,.form .g{grid-template-columns:1fr}
+  .topbar .l span:nth-child(2){display:none}
+  .wrap{padding:0 20px}.sh h2,.ab h2{font-size:28px}
+  #fab span{display:none}#fab{padding:16px}
+  #top{display:none!important}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+ <defs>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="m3 7 9 6 9-6"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11.5a7 7 0 0 0-14 0C5 14.800 12 21 12 21z"/><circle cx="12" cy="9.500" r="2.500"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.500 2"/></symbol>
+  <symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 3c1 3.500 5 5.500 5 10a5 5 0 0 1-10 0c0-2 1-3 2-4 .3 1.500 1 2 2 2-.5-3 0-5 1-8z"/></symbol>
+  <symbol id="i-plan" viewBox="0 0 24 24"><path d="M4 20V6l8-3 8 3v14M4 20h16M9 20v-6h6v6M9 9h.01M15 9h.01"/></symbol>
+  <symbol id="i-fan" viewBox="0 0 24 24"><circle cx="12" cy="12" r="1.800"/><path d="M12 10.200C12 6 10 3 7 3c-2 0-2 3 .5 5M13.800 12c4.200 0 7.200-2 7.200-5 0-2-3-2-5 .5M12 13.800C12 18 14 21 17 21c2 0 2-3-.5-5M10.200 12C6 12 3 14 3 17c0 2 3 2 5-.5"/></symbol>
+  <symbol id="i-snow" viewBox="0 0 24 24"><path d="M12 2v20M3.300 7l17.400 10M3.300 17 20.700 7M9 4l3 2 3-2M9 20l3-2 3 2"/></symbol>
+  <symbol id="i-floor" viewBox="0 0 24 24"><path d="M3 18h18M5 18c0-3 2-3 2-6s-2-3-2-6M10 18c0-3 2-3 2-6s-2-3-2-6M15 18c0-3 2-3 2-6s-2-3-2-6"/></symbol>
+  <symbol id="i-tool" viewBox="0 0 24 24"><path d="M14.500 6.500a4 4 0 0 0 5 5L21 13l-8 8-3-3 8-8-1.500-1.500zM10 14l-6 6"/><path d="M14.500 6.500 17 4l3 3-2.500 2.500"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4V5z"/><path d="M8 9.500h8M8 12.500h5"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M4 12 20 4l-5 16-3-7-8-1z"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.6-5.9M20 4v5h-5"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.500 4.500 4.500L19 7.500"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 5 6v6c0 4.500 3 7.500 7 9 4-1.500 7-4.500 7-9V6l-7-3z"/><path d="m9 12 2.200 2.200L15 10"/></symbol>
+  <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M5 19c0-8 5-14 15-14 0 10-6 15-14 15M5 19c2-5 5-8 9-10"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 3 5 13h6l-1 8 8-10h-6l1-8z"/></symbol>
+  <symbol id="i-coin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M14.500 9a3 3 0 0 0-5 1.500c0 3.500 5 1.500 5 5a3 3 0 0 1-5 1.500M12 6.500v1.500M12 16v1.500"/></symbol>
+  <symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="m8.500 14-1.500 7 5-3 5 3-1.500-7"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.900 4.900 7 7M17 17l2.100 2.100M4.900 19.100 7 17M17 7l2.100-2.100"/></symbol>
+ </defs>
+</svg>
+
+<div class="topbar"><div class="wrap">
+ <div class="l"><span><svg class="i"><use href="#i-phone"/></svg>02 958 27 05 &nbsp;·&nbsp; 0700 14 400</span><span><svg class="i"><use href="#i-mail"/></svg>office@imgengi.com</span></div>
+ <div class="lng"><a class="on">BG</a><a>EN</a></div>
+</div></div>
+
+<header><div class="wrap hd">
+ <a class="logo" href="#"><div class="mark">IMG</div><div><b>Ай Ем Джи Инженеринг</b><small>КЛИМАТИЧНИ · ОТОПЛИТЕЛНИ · ГАЗОВИ СИСТЕМИ</small></div></a>
+ <nav><ul>
+  <li><a href="#about">За нас</a></li><li><a href="#uslugi">Услуги</a></li><li><a href="#termopompi">Термопомпи</a></li><li><a href="#process">Как работим</a></li><li><a href="#novini">Новини</a></li><li><a href="#faq">Въпроси</a></li><li><a href="#kontakti">Контакти</a></li>
+ </ul></nav>
+ <button class="cta sm" onclick="openChat()">Заявете оферта</button>
+ <button class="burger" id="burger" aria-label="Меню"><svg class="i"><use href="#i-menu"/></svg></button>
+</div>
+<div class="mnav" id="mnav"><a href="#about">За нас</a><a href="#uslugi">Услуги</a><a href="#termopompi">Термопомпи</a><a href="#process">Как работим</a><a href="#novini">Новини</a><a href="#faq">Въпроси</a><a href="#kontakti">Контакти</a></div>
+</header>
+
+<div class="hero"><div class="wrap">
+ <div>
+  <div class="eyebrow">Проектиране · Доставка · Монтаж · Сервиз</div>
+  <h1>Надеждни системи за отопление, охлаждане и вентилация</h1>
+  <p class="lead">Изграждаме цялостни ОВК решения за къщи, офиси и търговски обекти – от инженерния проект до гаранционната и следгаранционната поддръжка.</p>
+  <div class="btns"><button class="cta" onclick="openChat()">Оферта за термопомпа <svg class="i"><use href="#i-arrow"/></svg></button><a class="ghost" href="#uslugi">Нашите услуги</a></div>
+  <div class="pts">
+   <span><svg class="i"><use href="#i-shield"/></svg>Реномирани марки</span>
+   <span><svg class="i"><use href="#i-tool"/></svg>Собствени монтажни екипи</span>
+   <span><svg class="i"><use href="#i-award"/></svg>Сервиз и поддръжка</span>
+  </div>
+ </div>
+ <div class="panel rv">
+  <h3>Предварителна оферта за 2 минути</h3>
+  <p>Отговорете на няколко въпроса за имота и получете ориентировъчна цена за система с термопомпа.</p>
+  <ol><li>Площ и вид на имота</li><li>Изолация и отоплителни тела</li><li>Топла вода за битови нужди</li><li>Вашата предварителна оферта</li></ol>
+  <button class="cta" onclick="openChat()">Започнете калкулация</button>
+  <small>Безплатно и без ангажимент</small>
+ </div>
+</div></div>
+
+<section id="about"><div class="wrap ab">
+ <div class="rv">
+  <div class="sh" style="margin-bottom:0;max-width:none"><small>За нас</small></div>
+  <h2>Един изпълнител за цялата ОВК инсталация</h2>
+  <p>Ай Ем Джи Инженеринг се занимава с проектиране, доставка, изграждане, монтаж и сервиз на климатични, вентилационни, отоплителни и газови системи. Работим с техника на реномирани производители и поемаме целия процес – от първата консултация до пускането в експлоатация.</p>
+  <ul class="checks">
+   <li><svg class="i"><use href="#i-check"/></svg>Инженерен подход и точно оразмеряване на всяка система</li>
+   <li><svg class="i"><use href="#i-check"/></svg>Оборудване от водещи световни марки</li>
+   <li><svg class="i"><use href="#i-check"/></svg>Професионален монтаж и пускане в експлоатация</li>
+   <li><svg class="i"><use href="#i-check"/></svg>Редовна поддръжка и бърза реакция при нужда</li>
+  </ul>
+ </div>
+ <div class="abv rv">
+  <div class="grid">
+   <div class="k"><svg class="i"><use href="#i-plan"/></svg><b>Проектиране</b><span>Изчисления и проекти по действащите норми</span></div>
+   <div class="k"><svg class="i"><use href="#i-award"/></svg><b>Качество</b><span>Проверено оборудване от утвърдени производители</span></div>
+   <div class="k"><svg class="i"><use href="#i-tool"/></svg><b>Монтаж</b><span>Квалифицирани екипи и чисто изпълнение</span></div>
+   <div class="k"><svg class="i"><use href="#i-shield"/></svg><b>Сервиз</b><span>Поддръжка след въвеждане в експлоатация</span></div>
+  </div>
+ </div>
+</div></section>
+
+<section class="alt" id="uslugi"><div class="wrap">
+ <div class="sh c rv"><small>Услуги</small><h2>Какво предлагаме</h2><p>Пълен набор от решения за отопление, охлаждане и вентилация на жилищни, офис и търговски обекти.</p></div>
+ <div class="sv">
+  <div class="svc rv"><div class="ic"><svg class="i"><use href="#i-flame"/></svg></div><h3>Газови котли и инсталации</h3><p>Доставка и монтаж на кондензни котли и газови инсталации за жилищни и търговски обекти.</p><a href="#kontakti">Запитване <svg class="i"><use href="#i-arrow"/></svg></a></div>
+  <div class="svc rv"><div class="ic"><svg class="i"><use href="#i-plan"/></svg></div><h3>Проектиране</h3><p>Инженерни проекти за отопление, вентилация и климатизация по действащите норми.</p><a href="#kontakti">Запитване <svg class="i"><use href="#i-arrow"/></svg></a></div>
+  <div class="svc rv"><div class="ic"><svg class="i"><use href="#i-fan"/></svg></div><h3>Вентилация</h3><p>Системи за принудителна вентилация и рекуперация за здравословна и комфортна среда.</p><a href="#kontakti">Запитване <svg class="i"><use href="#i-arrow"/></svg></a></div>
+  <div class="svc rv"><div class="ic"><svg class="i"><use href="#i-snow"/></svg></div><h3>Климатизация</h3><p>Климатични системи за дома и бизнеса от водещи световни производители.</p><a href="#kontakti">Запитване <svg class="i"><use href="#i-arrow"/></svg></a></div>
+  <div class="svc rv"><div class="ic"><svg class="i"><use href="#i-floor"/></svg></div><h3>Подово отопление</h3><p>Водно подово отопление с включени доставка и професионален монтаж.</p><a href="#kontakti">Запитване <svg class="i"><use href="#i-arrow"/></svg></a></div>
+  <div class="svc rv"><div class="ic"><svg class="i"><use href="#i-tool"/></svg></div><h3>Доставка и монтаж</h3><p>Цялостно изпълнение на ключ – оборудване, материали и монтаж от един изпълнител.</p><a href="#kontakti">Запитване <svg class="i"><use href="#i-arrow"/></svg></a></div>
+ </div>
+</div></section>
+
+<div class="brands"><div class="wrap"><em>Партньорски марки</em><span>Daikin</span><span>Toshiba</span><span>Mitsubishi</span><span>Panasonic</span><span>Galletti</span><span>Viessmann</span><span>Bosch</span><span>Ariston</span></div></div>
+
+<section id="termopompi"><div class="wrap hp">
+ <div class="rv">
+  <div class="sh" style="margin-bottom:0"><small>Термопомпи</small><h2>Отопление, охлаждане и топла вода с една система</h2><p>Термопомпата извлича топлина от външния въздух и я предава на отоплителната инсталация. Произвежда няколко пъти повече топлинна енергия, отколкото консумира електрическа.</p></div>
+  <div class="bens">
+   <div class="ben"><svg class="i"><use href="#i-coin"/></svg><b>По-ниски разходи</b><span>Ефективна работа и по-ниски сметки за отопление.</span></div>
+   <div class="ben"><svg class="i"><use href="#i-sun"/></svg><b>Целогодишен комфорт</b><span>Отопление през зимата и охлаждане през лятото.</span></div>
+   <div class="ben"><svg class="i"><use href="#i-leaf"/></svg><b>Екологично решение</b><span>Без локални емисии и използване на възобновяема енергия.</span></div>
+   <div class="ben"><svg class="i"><use href="#i-bolt"/></svg><b>Съвместимост с соларни панели</b><span>Възможност за комбиниране с фотоволтаична система.</span></div>
+  </div>
+ </div>
+ <div class="diag rv">
+  <svg viewBox="0 0 460 330" role="img" aria-label="Схема на термопомпена система">
+   <style>
+    .fan{transform-box:fill-box;transform-origin:center;animation:spin 1.6s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .flow-h{stroke-dasharray:9 7;animation:fl 1.1s linear infinite}
+    .flow-c{stroke-dasharray:9 7;animation:fr 1.1s linear infinite}
+    @keyframes fl{to{stroke-dashoffset:-32}}
+    @keyframes fr{to{stroke-dashoffset:32}}
+    .rise{animation:rise 3s ease-in-out infinite;opacity:0}
+    .rise.b{animation-delay:1s}.rise.c{animation-delay:2s}
+    @keyframes rise{0%{opacity:0;transform:translateY(14px)}30%{opacity:.9}100%{opacity:0;transform:translateY(-14px)}}
+    .warm{animation:warm 3.2s ease-in-out infinite;opacity:0}
+    .warm.b{animation-delay:1.1s}.warm.c{animation-delay:2.2s}
+    @keyframes warm{0%{opacity:0;transform:translateY(10px)}35%{opacity:.85}100%{opacity:0;transform:translateY(-16px)}}
+    .glow{animation:glow 4s ease-in-out infinite}
+    @keyframes glow{0%,100%{opacity:.10}50%{opacity:.32}}
+    .win{animation:win 4s ease-in-out infinite}
+    @keyframes win{0%,100%{fill:#dbe6f3}50%{fill:#ffe3c7}}
+    .air{animation:air 2s linear infinite;opacity:0}
+    .air.b{animation-delay:.65s}.air.c{animation-delay:1.3s}
+    @keyframes air{0%{opacity:0;transform:translateX(18px)}25%{opacity:.9}100%{opacity:0;transform:translateX(-12px)}}
+    @media (prefers-reduced-motion:reduce){.fan,.flow-h,.flow-c,.rise,.warm,.glow,.win,.air{animation:none;opacity:1}}
+   </style>
+   <rect width="460" height="330" fill="#f4f6f9"/>
+   <path d="M0 270h460" stroke="#c9d3df" stroke-width="2"/>
+   <path d="M150 270V150l90-60 90 60v120z" fill="#fff" stroke="#0b2a4a" stroke-width="2.5"/>
+   <rect x="152" y="152" width="176" height="116" fill="#c8472b" class="glow"/>
+   <rect x="175" y="165" width="34" height="34" class="win" fill="#dbe6f3" stroke="#0b2a4a" stroke-width="2"/>
+   <rect x="271" y="165" width="34" height="34" class="win" fill="#dbe6f3" stroke="#0b2a4a" stroke-width="2"/>
+   <path d="M192 165v34M175 182h34M288 165v34M271 182h34" stroke="#0b2a4a" stroke-width="1.5"/>
+   <g fill="none" stroke="#c8472b" stroke-width="2.5" stroke-linecap="round">
+    <path class="warm" d="M200 232c-5-6 5-10 0-16s5-10 0-16"/>
+    <path class="warm b" d="M240 232c-5-6 5-10 0-16s5-10 0-16"/>
+    <path class="warm c" d="M280 232c-5-6 5-10 0-16s5-10 0-16"/>
+   </g>
+   <path d="M345 250H168" fill="none" stroke="#c8472b" stroke-width="3.5" stroke-linecap="round" class="flow-h"/>
+   <path d="M168 262H345" fill="none" stroke="#1769b5" stroke-width="3.5" stroke-linecap="round" class="flow-c"/>
+   <path d="M168 250v12" stroke="#0b2a4a" stroke-width="2"/>
+   <rect x="345" y="205" width="85" height="65" fill="#fff" stroke="#0b2a4a" stroke-width="2.5"/>
+   <circle cx="387" cy="237" r="25" fill="#e9eef4" stroke="#0b2a4a" stroke-width="2"/>
+   <g class="fan">
+    <path d="M387 237c-3-10-1-18 6-20 5 6 3 15-6 20zM387 237c10-3 18-1 20 6-6 5-15 3-20-6zM387 237c3 10 1 18-6 20-5-6-3-15 6-20zM387 237c-10 3-18 1-20-6 6-5 15-3 20 6z" fill="#1769b5"/>
+   </g>
+   <circle cx="387" cy="237" r="4" fill="#0b2a4a"/>
+   <g fill="none" stroke="#1769b5" stroke-width="2.5" stroke-linecap="round">
+    <path class="rise" d="M365 195c8-10 8-10 0-20"/>
+    <path class="rise b" d="M387 195c8-10 8-10 0-20"/>
+    <path class="rise c" d="M409 195c8-10 8-10 0-20"/>
+   </g>
+   <g fill="none" stroke="#7fb2e5" stroke-width="2.5" stroke-linecap="round">
+    <path class="air" d="M452 222h-14M452 237h-14M452 252h-14"/>
+    <path class="air b" d="M452 222h-14M452 237h-14M452 252h-14"/>
+    <path class="air c" d="M452 222h-14M452 237h-14M452 252h-14"/>
+   </g>
+   <text x="387" y="296" text-anchor="middle" font-family="Roboto,Arial" font-size="13" fill="#0b2a4a" font-weight="500">Външно тяло</text>
+   <text x="240" y="296" text-anchor="middle" font-family="Roboto,Arial" font-size="13" fill="#0b2a4a" font-weight="500">Сграда с подово отопление</text>
+   <text x="395" y="150" text-anchor="middle" font-family="Roboto,Arial" font-size="12" fill="#1769b5" font-weight="500">Топлина от въздуха</text>
+  </svg>
+ </div>
+</div></section>
+
+<section class="alt" id="process"><div class="wrap">
+ <div class="sh c rv"><small>Как работим</small><h2>От запитването до пускането в експлоатация</h2><p>Ясен процес в пет стъпки, при който знаете какво следва на всеки етап.</p></div>
+ <div class="pr">
+  <div class="st rv"><div class="n">1</div><div><b>Запитване</b><span>Описвате нуждите си онлайн или по телефона.</span></div></div>
+  <div class="st rv"><div class="n">2</div><div><b>Безплатен оглед</b><span>Специалист оглежда обекта и взема размери.</span></div></div>
+  <div class="st rv"><div class="n">3</div><div><b>Оферта и проект</b><span>Получавате точна оферта и техническо решение.</span></div></div>
+  <div class="st rv"><div class="n">4</div><div><b>Монтаж</b><span>Екипите ни изпълняват инсталацията в уговорения срок.</span></div></div>
+  <div class="st rv"><div class="n">5</div><div><b>Сервиз</b><span>Пускане в експлоатация и последваща поддръжка.</span></div></div>
+ </div>
+</div></section>
+
+<div class="band"><div class="wrap">
+ <div><h2>Искате да знаете колко струва вашата система?</h2><p>Отговорете на няколко кратки въпроса и получете ориентировъчна оферта още сега. Специалист ще се свърже с вас за безплатен оглед.</p></div>
+ <button class="cta" onclick="openChat()">Започнете калкулация <svg class="i"><use href="#i-arrow"/></svg></button>
+</div></div>
+
+<section id="novini"><div class="wrap">
+ <div class="sh rv"><small>Новини</small><h2>Актуални предложения</h2></div>
+ <div class="nw">
+  <div class="card rv"><div class="ph"><svg class="i"><use href="#i-floor"/></svg><span class="tag">Актуално</span></div><div class="tx"><h3>Подово отопление от 22 EUR/м² с включени доставка и монтаж</h3><p>Цялостно решение за изграждане на водно подово отопление на цена без ДДС.</p><a href="#">Прочетете повече</a></div></div>
+  <div class="card rv"><div class="ph"><svg class="i"><use href="#i-sun"/></svg><span class="tag">Термопомпи</span></div><div class="tx"><h3>Термопомпи Ariston Nimbus Plus S NET R32</h3><p>Енергоефективно отопление, охлаждане и топла вода с един уред.</p><a href="#">Прочетете повече</a></div></div>
+  <div class="card rv"><div class="ph"><svg class="i"><use href="#i-fan"/></svg><span class="tag">Продукти</span></div><div class="tx"><h3>Асансьорен стерилизатор за въздух с филтър Germagic</h3><p>Дезинфекция на въздух и повърхности в асансьори.</p><a href="#">Прочетете повече</a></div></div>
+ </div>
+</div></section>
+
+<section class="alt" id="klienti"><div class="wrap">
+ <div class="sh c rv"><small>Клиенти</small><h2>Доверяват ни се</h2></div>
+ <div class="rv clg" id="cl"></div>
+</div></section>
+
+<section id="faq"><div class="wrap">
+ <div class="sh c rv"><small>Въпроси</small><h2>Често задавани въпроси</h2></div>
+ <div class="fq rv">
+  <div class="fi"><button><span>Каква мощност термопомпа ми трябва?</span><svg class="i"><use href="#i-plus"/></svg></button><div class="a"><p>Зависи от отопляемата площ, топлинната изолация на сградата, дограмата и вида на отоплителните тела. Затова събираме тези данни в калкулатора, а точната мощност потвърждаваме при безплатния оглед.</p></div></div>
+  <div class="fi"><button><span>Подходяща ли е термопомпата за стара сграда?</span><svg class="i"><use href="#i-plus"/></svg></button><div class="a"><p>Да, но при по-слаба изолация е нужна по-висока мощност, а в някои случаи е препоръчително да се подобри и самата сграда. Нашите специалисти ще предложат най-разумното решение за конкретния обект.</p></div></div>
+  <div class="fi"><button><span>Може ли термопомпата да работи с радиатори?</span><svg class="i"><use href="#i-plus"/></svg></button><div class="a"><p>Да. Най-ефективна е със подово отопление, защото работи с ниска температура на водата, но с подходящо оразмерени радиатори или конвектори също се постига добър резултат.</p></div></div>
+  <div class="fi"><button><span>Включена ли е топлата вода за битови нужди?</span><svg class="i"><use href="#i-plus"/></svg></button><div class="a"><p>Системата може да подгрява и вода за баня и кухня чрез бойлер с подходящ обем. Обемът се определя според броя на хората в дома.</p></div></div>
+  <div class="fi"><button><span>Колко време отнема монтажът?</span><svg class="i"><use href="#i-plus"/></svg></button><div class="a"><p>Срокът зависи от обема на работата и вида на обекта. Точен срок посочваме в офертата след огледа.</p></div></div>
+  <div class="fi"><button><span>Предлагате ли сервиз след монтажа?</span><svg class="i"><use href="#i-plus"/></svg></button><div class="a"><p>Да. Предлагаме гаранционен и следгаранционен сервиз, както и редовна профилактика на монтираната техника.</p></div></div>
+ </div>
+</div></section>
+
+<section class="alt" id="kontakti"><div class="wrap ct">
+ <div class="rv">
+  <div class="sh" style="margin-bottom:34px"><small>Контакти</small><h2>Свържете се с нас</h2><p>Пишете ни или се обадете и ще ви препоръчаме най-подходящото решение за вашия обект.</p></div>
+  <div class="ci">
+   <div><span class="ic"><svg class="i"><use href="#i-pin"/></svg></span><p style="margin:0"><b>Адрес</b><span>гр. София 1404, жк. Стрелбище,<br>ул. Дедеагач 40, офис №3</span></p></div>
+   <div><span class="ic"><svg class="i"><use href="#i-phone"/></svg></span><p style="margin:0"><b>Телефон</b><span>02 958 27 05<br>Национален: 0700 14 400</span></p></div>
+   <div><span class="ic"><svg class="i"><use href="#i-mail"/></svg></span><p style="margin:0"><b>Имейл</b><span>office@imgengi.com</span></p></div>
+  </div>
+ </div>
+ <form class="form rv" id="cform">
+  <h3>Изпратете запитване</h3>
+  <div class="g">
+   <div><label>Име</label><input required></div>
+   <div><label>Телефон</label><input required type="tel"></div>
+   <div class="full"><label>Имейл</label><input type="email"></div>
+   <div class="full"><label>Съобщение</label><textarea></textarea></div>
+   <div class="full"><button class="cta" type="submit">Изпратете запитването <svg class="i"><use href="#i-arrow"/></svg></button></div>
+  </div>
+  <div class="ok" id="cok">Благодарим ви! Ще се свържем с вас възможно най-скоро.</div>
+ </form>
+</div></section>
+
+<footer><div class="wrap">
+ <div>
+  <a class="logo" href="#"><div class="mark">IMG</div><div><b>Ай Ем Джи Инженеринг</b><small>ОВК СИСТЕМИ</small></div></a>
+  <p>Проектиране, доставка, изграждане, монтаж и сервиз на климатични, вентилационни, отоплителни и газови системи.</p>
+ </div>
+ <div><h4>Навигация</h4><a href="#about">За нас</a><a href="#uslugi">Услуги</a><a href="#termopompi">Термопомпи</a><a href="#novini">Новини</a><a href="#kontakti">Контакти</a></div>
+ <div><h4>Контакти</h4>гр. София 1404, жк. Стрелбище,<br>ул. Дедеагач 40, офис №3<br>02 958 27 05<br>office@imgengi.com</div>
+</div></footer>
+<div class="cp"><div class="wrap"><span>Copyright 2026, IMG Engineering</span><span>Демонстрационна версия</span></div></div>
+
+<button id="top" aria-label="Нагоре"><svg class="i"><use href="#i-up"/></svg></button>
+
+<div id="tease"><button onclick="this.parentNode.classList.remove('show')" aria-label="Затвори">×</button>Желаете ли предварителна оферта за термопомпа? Отнема две минути.</div>
+<button id="fab" onclick="openChat()"><svg class="i"><use href="#i-chat"/></svg><span>Оферта за термопомпа</span></button>
+
+<div id="chat" role="dialog" aria-label="ОВК консултант">
+ <div class="ch">
+  <div class="av"><svg class="i"><use href="#i-chat"/></svg></div>
+  <div class="t"><b>ОВК консултант</b><small>На линия</small></div>
+  <button onclick="restart()" aria-label="Започни отначало" title="Започни отначало"><svg class="i"><use href="#i-refresh"/></svg></button>
+  <button onclick="closeChat()" aria-label="Затвори"><svg class="i"><use href="#i-x"/></svg></button>
+ </div>
+ <div class="prog"><i id="pbar"></i></div>
+ <div id="msgs"></div>
+ <div class="qr" id="qr"></div>
+ <form class="cf" id="f"><input id="inp" placeholder="Напишете вашия отговор" autocomplete="off"><button aria-label="Изпрати"><svg class="i"><use href="#i-send"/></svg></button></form>
+ <div class="legal">Калкулацията е ориентировъчна и не представлява обвързваща оферта.</div>
+</div>
+
+<script>
+/* ---------- страница ---------- */
+(function(){
+  var cl=['УниКредит Булбанк','Пощенска банка','Банка ДСК','Райфайзенбанк','METRO','dm България','H&M','PUMA','Бизнес парк София','PwC България'];
+  document.getElementById('cl').innerHTML=cl.map(function(n){return '<span>'+n.replace('&','&amp;')+'</span>'}).join('');
+  document.getElementById('burger').onclick=function(){document.getElementById('mnav').classList.toggle('open')};
+  document.querySelectorAll('.mnav a').forEach(function(a){a.onclick=function(){document.getElementById('mnav').classList.remove('open')}});
+  document.querySelectorAll('.fi button').forEach(function(b){b.onclick=function(){
+    var it=b.parentNode,a=it.querySelector('.a'),o=it.classList.contains('open');
+    document.querySelectorAll('.fi').forEach(function(x){x.classList.remove('open');x.querySelector('.a').style.maxHeight=0});
+    if(!o){it.classList.add('open');a.style.maxHeight=a.scrollHeight+'px'}
+  }});
+  var els=document.querySelectorAll('.rv');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+    els.forEach(function(e,i){e.style.transitionDelay=(i%3)*80+'ms';io.observe(e)});
+  }else els.forEach(function(e){e.classList.add('in')});
+  var top=document.getElementById('top');
+  window.addEventListener('scroll',function(){top.classList.toggle('show',window.scrollY>600)});
+  top.onclick=function(){window.scrollTo({top:0,behavior:'smooth'})};
+  document.getElementById('cform').addEventListener('submit',function(e){e.preventDefault();document.getElementById('cok').style.display='block';this.reset()});
+  setTimeout(function(){if(!S.started&&!document.getElementById('chat').classList.contains('open'))document.getElementById('tease').classList.add('show')},7000);
+})();
+
+/* ---------- цени ---------- */
+/* Адрес за получаване на заявките (по желание). Празно = заявките не се изпращат никъде. */
+const LEADS_URL='';
+
+/* Резервни цени: ползват се, ако prices.json липсва или е повреден. */
+const DEFAULT_PRICES={
+  eurToBgn:1.95583,
+  wattsPerM2:{good:50,mid:80,weak:110},
+  emitters:{
+    floor:{label:'Подово отопление',perM2:22},
+    rad:{label:'Радиатори',perM2:0},
+    conv:{label:'Стенни конвектори',perM2:0}
+  },
+  boilerByPeople:[{maxPeople:2,liters:150},{maxPeople:4,liters:200},{maxPeople:999,liters:300}],
+  heatPumps:[
+    {kw:6,model:'Ariston Nimbus Plus 60 S NET R32',price:5900},
+    {kw:8,model:'Ariston Nimbus Plus 80 S NET R32',price:6700},
+    {kw:10,model:'Ariston Nimbus Plus 100 S NET R32',price:7600},
+    {kw:12,model:'Ariston Nimbus Plus 120 S NET R32',price:8500},
+    {kw:16,model:'Ariston Nimbus Plus 160 S NET R32',price:10200}
+  ],
+  boilers:[{liters:150,price:1000},{liters:200,price:1200},{liters:300,price:1600}]
+};
+let PRICES=DEFAULT_PRICES;
+
+function isNum(v){return typeof v==='number'&&isFinite(v)&&v>=0}
+function validPrices(p){
+  if(!p||typeof p!=='object'||!isNum(p.eurToBgn)||p.eurToBgn<=0)return false;
+  if(!p.wattsPerM2||!['good','mid','weak'].every(function(k){return isNum(p.wattsPerM2[k])&&p.wattsPerM2[k]>0}))return false;
+  if(!p.emitters||!['floor','rad','conv'].every(function(k){var e=p.emitters[k];return e&&typeof e.label==='string'&&isNum(e.perM2)}))return false;
+  if(!Array.isArray(p.boilerByPeople)||!p.boilerByPeople.length||!p.boilerByPeople.every(function(t){return t&&isNum(t.maxPeople)&&isNum(t.liters)}))return false;
+  if(!Array.isArray(p.heatPumps)||!p.heatPumps.length||!p.heatPumps.every(function(h){return h&&isNum(h.kw)&&h.kw>0&&isNum(h.price)&&typeof h.model==='string'}))return false;
+  if(!Array.isArray(p.boilers)||!p.boilers.length||!p.boilers.every(function(x){return x&&isNum(x.liters)&&isNum(x.price)}))return false;
+  return true;
+}
+const pricesReady=fetch('prices.json',{cache:'no-cache'})
+  .then(function(r){return r.ok?r.json():null})
+  .then(function(j){if(validPrices(j))PRICES=j})
+  .catch(function(){});
+
+function calculate(d,P){
+  var watts=P.wattsPerM2[d.ins],em=P.emitters[d.emit];
+  if(!watts||!em||!P.heatPumps.length)throw new Error('prices');
+  var need=d.area*watts; /* във ватове, за да няма грешки от закръгляне */
+  var pumps=P.heatPumps.slice().sort(function(x,y){return x.kw-y.kw});
+  var pump=null;
+  for(var i=0;i<pumps.length;i++){if(Math.round(pumps[i].kw*1000)>=need){pump=pumps[i];break}}
+  var exceeds=!pump;
+  if(!pump)pump=pumps[pumps.length-1];
+  var total=pump.price,boiler=null;
+  if(d.dhw){
+    var people=Math.max(1,d.people||1),tiers=P.boilerByPeople.slice().sort(function(x,y){return x.maxPeople-y.maxPeople}),wanted=null;
+    for(var j=0;j<tiers.length;j++){if(people<=tiers[j].maxPeople){wanted=tiers[j].liters;break}}
+    if(wanted===null)wanted=tiers[tiers.length-1].liters;
+    var bs=P.boilers.slice().sort(function(x,y){return x.liters-y.liters});
+    boiler=bs[bs.length-1];
+    for(var k=0;k<bs.length;k++){if(bs[k].liters>=wanted){boiler=bs[k];break}}
+    total+=boiler.price;
+  }
+  var extra=Math.round(em.perM2*d.area);
+  total+=extra;
+  return{kwNeeded:Math.round(need/100)/10,pump:pump,exceeds:exceeds,boiler:boiler,emitter:{label:em.label,price:extra},totalEur:total,totalBgn:Math.round(total*P.eurToBgn)};
+}
+
+function sendLead(d,o){
+  if(!LEADS_URL)return;
+  try{
+    fetch(LEADS_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},keepalive:true,body:JSON.stringify({
+      name:d.name,phone:d.phone,email:d.email||'',object:d.type,area:d.area,insulation:d.ins,emitter:d.emit,
+      hotWater:!!d.dhw,people:d.dhw?d.people:null,
+      offer:{model:o.pump.model,kw:o.pump.kw,boilerLiters:o.boiler?o.boiler.liters:null,totalEur:o.totalEur,totalBgn:o.totalBgn,needsSurvey:o.exceeds},
+      page:location.href,at:new Date().toISOString()
+    })}).catch(function(){});
+  }catch(e){}
+}
+
+/* ---------- разговор ---------- */
+const S={step:0,d:{},started:false};
+const msgs=document.getElementById('msgs'),qr=document.getElementById('qr'),inp=document.getElementById('inp'),pbar=document.getElementById('pbar');
+const fmt=n=>Math.round(n).toLocaleString('bg-BG');
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function progress(){pbar.style.width=Math.min(100,Math.max(0,(S.step-1)/7*100))+'%'}
+
+function add(text,cls){const d=document.createElement('div');d.className='m '+cls;d.textContent=text;msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d}
+function addHTML(html,cls){const d=document.createElement('div');d.className=cls;d.innerHTML=html;msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight}
+function setQR(arr){qr.innerHTML='';(arr||[]).forEach(t=>{const b=document.createElement('button');b.type='button';b.textContent=t;b.onclick=()=>handle(t);qr.appendChild(b)});msgs.scrollTop=msgs.scrollHeight}
+function bot(text,opts,delay=650){
+  setQR([]);const t=add('Пише','bot typing');
+  setTimeout(()=>{t.remove();add(text,'bot');setQR(opts)},delay);
+}
+function openChat(){
+  document.getElementById('tease').classList.remove('show');
+  document.getElementById('chat').classList.add('open');
+  document.getElementById('fab').style.display='none';
+  if(!S.started){S.started=true;start()}
+  inp.focus();
+}
+function closeChat(){
+  document.getElementById('chat').classList.remove('open');
+  document.getElementById('fab').style.display='flex';
+}
+function restart(){msgs.innerHTML='';qr.innerHTML='';S.d={};S.step=0;start()}
+
+function start(){
+  S.step=1;progress();
+  bot("Здравейте и добре дошли! Аз съм дигиталният консултант на Ай Ем Джи Инженеринг. Ще ви помогна да получите предварителна оферта за отопление с термопомпа.\n\nЗа начало, каква е отопляемата площ на имота (в кв. м) и къща ли е, или апартамент?",["120 кв.м, къща","80 кв.м, апартамент","200 кв.м, къща"]);
+}
+
+function handle(text){
+  text=text.trim();if(!text)return;
+  if(S.step>=8&&/нова калкулация/i.test(text)){inp.value='';return restart()}
+  add(text,'usr');inp.value='';
+  const low=text.toLowerCase();
+  switch(S.step){
+  case 1:{
+    const m=low.match(/(\d+)/);
+    if(!m||parseInt(m[1])<10||parseInt(m[1])>2000){return bot("Не успях да разпозная площта. Моля, напишете я с цифри, например „120 кв.м, къща“.")}
+    S.d.area=parseInt(m[1]);
+    S.d.type=/апарт/.test(low)?"апартамент":/къщ/.test(low)?"къща":"имот";
+    S.step=2;progress();
+    bot(`Благодаря! ${S.d.area} кв.м, ${S.d.type}.\n\nИмате ли добра топлинна изолация и каква е дограмата? Това е важно, за да определим точната мощност на термопомпата.`,["Ново строителство, добра изолация","По-стара тухла, средна изолация","Стар панел, слаба изолация"]);
+    break}
+  case 2:{
+    if(/слаба|панел|без изолация/.test(low)) S.d.ins='weak';
+    else if(/ново|добра/.test(low)) S.d.ins='good';
+    else S.d.ins='mid';
+    S.step=3;progress();
+    bot("Разбрах. Как ще се разпределя топлината в дома – чрез подово отопление, радиатори или стенни конвектори?\n\nАко се колебаете: подовото отопление е най-ефективно с термопомпа, защото работи с ниска температура на водата.",["Подово отопление","Радиатори","Стенни конвектори","Не съм сигурен"]);
+    break}
+  case 3:{
+    S.d.unsure=/не съм/.test(low);
+    if(/подов/.test(low)||S.d.unsure) S.d.emit='floor';
+    else if(/конвект/.test(low)) S.d.emit='conv';
+    else S.d.emit='rad';
+    S.step=4;progress();
+    bot("Добре. Искате ли системата да подгрява и водата за битови нужди (баня, кухня)? Ако да, колко човека живеят в дома?",["Да, 2 човека","Да, 4 човека","Да, 5 човека","Не, само отопление"]);
+    break}
+  case 4:{
+    if(/^не/.test(low)){S.d.dhw=false;S.d.people=0}
+    else{S.d.dhw=true;const m=low.match(/(\d+)/);S.d.people=m?parseInt(m[1]):3}
+    S.step=5;progress();
+    bot("Благодаря за информацията! Системата калкулира вашата предварителна оферта. Моля, споделете вашето име, телефон и имейл, за да ви изпратим пълната разбивка и наш техник да се свърже с вас за потвърждение.\n\nКак се казвате?",null,900);
+    break}
+  case 5:
+    S.d.name=text;S.step=6;progress();
+    bot(`Приятно ми е, ${text}. На кой телефон можем да се свържем с вас?`);break;
+  case 6:{
+    if(low.replace(/\D/g,'').length<9){return bot("Телефонният номер изглежда непълен. Моля, въведете го с поне 9 цифри, например 0888 123 456.")}
+    S.d.phone=text;S.step=7;progress();
+    bot("Благодаря. И един имейл, на който да изпратим разбивката? Ако предпочитате, можете да го пропуснете.",["Пропускам имейла"]);break}
+  case 7:{
+    if(/пропуск/.test(low)) S.d.email="";
+    else if(!/^\S+@\S+\.\S+$/.test(text)) return bot("Имейл адресът не изглежда валиден. Опитайте отново или изберете „Пропускам имейла“.",["Пропускам имейла"]);
+    else S.d.email=text;
+    S.step=8;progress();
+    showOffer();break}
+  default:
+    bot("Наш специалист ще се свърже с вас до 24 часа. Ако желаете да направите нова калкулация, изберете бутона по-долу.",["Нова калкулация"]);
+  }
+}
+
+function showOffer(){
+  const d=S.d;
+  setQR([]);const t=add('Изчислявам','bot typing');
+  pricesReady.then(function(){
+    var o=null;
+    try{o=calculate(d,PRICES)}catch(e){}
+    setTimeout(function(){
+      t.remove();
+      if(!o){add("В момента не можем да изчислим оферта. Моля, свържете се с нас на 02 958 27 05.",'bot');setQR(["Нова калкулация"]);return}
+      pbar.style.width='100%';
+      const boiler=o.boiler?`Бойлер ${o.boiler.liters} литра`:'Не е включена';
+      addHTML(`<div class="oh">Вашата предварителна оферта за ОВК система</div>
+       <div class="ob">
+        <div class="orow"><span>Оборудване</span><b>Термопомпа ${esc(o.pump.model)} (${o.pump.kw} kW)</b></div>
+        <div class="orow"><span>Топла вода</span><b>${boiler}</b></div>
+        <div class="orow"><span>Отоплителни тела</span><b>${esc(o.emitter.label)}${o.emitter.price?`, ${fmt(o.emitter.price)} EUR`:''}</b></div>
+        <div class="otot"><span>Ориентировъчна стойност</span><b>около ${fmt(o.totalEur)} EUR</b> <em>(${fmt(o.totalBgn)} лв.)</em></div>
+        <div class="onote">Включва оборудване, стандартни инсталационни материали и монтаж. Изчислена нужна мощност: около ${o.kwNeeded.toFixed(1)} kW. Цената е ориентировъчна и се потвърждава след оглед.${d.unsure?' Подовото отопление е предложено като най-ефективно за термопомпа.':''}${o.exceeds?' Нужната мощност надвишава най-големия стандартен модел, затова е необходим оглед за точно решение.':''}</div>
+       </div>
+       <div class="onext"><b>Следваща стъпка:</b> наш специалист ще се свърже с вас на ${esc(d.phone)} до 24 часа, за да обсъдите детайлите и да насрочите безплатен оглед.</div>`,'offer');
+      if(!d.email) add("Без имейл не можем да ви изпратим писмена разбивка, затова цената остава само ориентировъчна до извършване на оглед.",'bot');
+      setQR(["Нова калкулация"]);
+      sendLead(d,o);
+    },700);
+  });
+}
+
+document.getElementById('f').addEventListener('submit',e=>{e.preventDefault();handle(inp.value)});
+</script>
+</body>
+</html>
