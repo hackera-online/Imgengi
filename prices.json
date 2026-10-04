@@ -1,0 +1,30 @@
+{
+  "eurToBgn": 1.95583,
+  "wattsPerM2": {
+    "good": 50,
+    "mid": 80,
+    "weak": 110
+  },
+  "emitters": {
+    "floor": { "label": "Подово отопление", "perM2": 22 },
+    "rad": { "label": "Радиатори", "perM2": 0 },
+    "conv": { "label": "Стенни конвектори", "perM2": 0 }
+  },
+  "boilerByPeople": [
+    { "maxPeople": 2, "liters": 150 },
+    { "maxPeople": 4, "liters": 200 },
+    { "maxPeople": 999, "liters": 300 }
+  ],
+  "heatPumps": [
+    { "kw": 6, "model": "Ariston Nimbus Plus 60 S NET R32", "price": 5900 },
+    { "kw": 8, "model": "Ariston Nimbus Plus 80 S NET R32", "price": 6700 },
+    { "kw": 10, "model": "Ariston Nimbus Plus 100 S NET R32", "price": 7600 },
+    { "kw": 12, "model": "Ariston Nimbus Plus 120 S NET R32", "price": 8500 },
+    { "kw": 16, "model": "Ariston Nimbus Plus 160 S NET R32", "price": 10200 }
+  ],
+  "boilers": [
+    { "liters": 150, "price": 1000 },
+    { "liters": 200, "price": 1200 },
+    { "liters": 300, "price": 1600 }
+  ]
+}
